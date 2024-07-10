@@ -2,7 +2,7 @@
 To continue on this project few things you need to set up first
 I did not upload the whole source code folder along with the framework code because it is unnecessary 
 
-STEPS IMPLEMENTING THE GITHUB CODE IN YOUR IONIC PROJECT FOLDER
+STEPS IMPLEMENTING THE GITHUB CODE IN YOUR IONIC PROJECT FOLDER <br>
 Step 1
 Run visual studio code in ADMINISTRATION mode
 Step 2
