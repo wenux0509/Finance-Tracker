@@ -17,9 +17,9 @@ From your virtual studio code, open your directory folder, and remove the whole 
 Step 6 <br>
 Replace the one src folder you downloaded from the git hub<br>
 Step 7<br>
-PHP file is put inside the finance-tracker, just simply put inside with other files . No need to open a new PHP folder inside the directory<br>
+PHP file is put inside the finance-tracker, just simply put inside with other files. No need to open a new PHP folder inside the directory<br>
 Step 8<br>
-You may run the command ionic serve in the vsc terminal to see if it works<br>
+You may run the command ionic serve in the vsc terminal to see if it works, but ensure you configure the database using XAMPP as well. Structure at the very bottom of the readme document<br>
 
 IMPORTANT ADDITIONAL INFORMATION BEFORE START
 Notes:
@@ -33,10 +33,10 @@ Notes:
 6. Under the page folder, most of the time, we only need to touch the HTML file and the type script file (Not the specs.ts, don't touch it), the one ts file shown in blue acts like Java script. It defines our page behavior
 7. For The SCSS file under the page folder, is basically css file for each page.
 
-
-The database name : expensedb
-Table 1 name : users
-Table strucure SQL code:
+*Rn only one table, because unsure what are the things to develop. We do this one by one*
+The database name: "expensedb"
+Table 1 name: "users"
+Table structure SQL code:
 
 CREATE TABLE `users` (
  `id` int(11) NOT NULL AUTO_INCREMENT,
