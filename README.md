@@ -32,6 +32,7 @@ Notes:
 5. To develop the new app page, we need to generate a new page using the command line *Ionic generate page PAGENAME * replace the page name with the actual name then it will automatically generate the folder under the app folder that comes with the module files, HTML file and so on.
 6. Under the page folder, most of the time, we only need to touch the HTML file and the type script file (Not the specs.ts, don't touch it), the one ts file shown in blue acts like Java script. It defines our page behavior
 7. For The SCSS file under the page folder, is basically css file for each page.
+8.PHP file is SENSITIVE, ESPECIALLY Login.php, this is super important, do not easily change the structure of login PHP, anything you wont be able to logging inside the system
 
 *Rn only one table, because unsure what are the things to develop. We do this one by one*
 The database name: "expensedb"
