@@ -5,6 +5,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 interface LoginResponse {
   success: boolean;
   error?: string;
+  username?: string; // Adjust based on PHP response structure
 }
 
 @Component({
@@ -29,6 +30,8 @@ export class LoginPage {
             this.loginError = ''; // Clear any previous login error message
             console.log('Login successful:', response);
             alert('Login successful');
+            // Store the username in local storage
+            localStorage.setItem('username', response.username || '');
             // Navigate to another page upon successful login
             this.router.navigate(['/expense-tracker']); // Replace with your desired page
           } else {
@@ -45,3 +48,4 @@ export class LoginPage {
       );
   }
 }
+
