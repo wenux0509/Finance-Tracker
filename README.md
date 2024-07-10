@@ -3,23 +3,23 @@ To continue on this project few things you need to set up first
 I did not upload the whole source code folder along with the framework code because it is unnecessary 
 
 STEPS IMPLEMENTING THE GITHUB CODE IN YOUR IONIC PROJECT FOLDER <br>
-Step 1
-Run visual studio code in ADMINISTRATION mode
-Step 2
-Use "IONIC start" in the terminal to start a project. Ensure your project directory is in htdocs
-Name your directory finance-tracker or something
-Step 3
-Configure the project with angular and please choose the blank page (menu) to start *Not important either because you need to replace the file later*
-Step 4
-Wait some time, once the project is successfully set up the terminal will tell you 
-Step 5
-From your virtual studio code, open your directory folder, and remove the whole source folder called >src
-Step 6 
-Replace the one src folder you downloaded from the git hub
-Step 7
-PHP file is put inside the finance-tracker, just simply put inside with other files . No need to open a new PHP folder inside the directory
-Step 8
-You may run the command ionic serve in the vsc terminal to see if it works
+Step 1<br>
+Run visual studio code in ADMINISTRATION mode<br>
+Step 2<br>
+Use "IONIC start" in the terminal to start a project. Ensure your project directory is in htdocs<br>
+Name your directory finance-tracker or something<br>
+Step 3<br>
+Configure the project with angular and please choose the blank page (menu) to start *Not important either because you need to replace the file later*<br>
+Step 4<br>
+Wait some time, once the project is successfully set up the terminal will tell you <br>
+Step 5<br>
+From your virtual studio code, open your directory folder, and remove the whole source folder called >src<br>
+Step 6 <br>
+Replace the one src folder you downloaded from the git hub<br>
+Step 7<br>
+PHP file is put inside the finance-tracker, just simply put inside with other files . No need to open a new PHP folder inside the directory<br>
+Step 8<br>
+You may run the command ionic serve in the vsc terminal to see if it works<br>
 
 IMPORTANT ADDITIONAL INFORMATION BEFORE START
 Notes:
@@ -32,3 +32,16 @@ Notes:
 5. To develop the new app page, we need to generate a new page using the command line *Ionic generate page PAGENAME * replace the page name with the actual name then it will automatically generate the folder under the app folder that comes with the module files, HTML file and so on.
 6. Under the page folder, most of the time, we only need to touch the HTML file and the type script file (Not the specs.ts, don't touch it), the one ts file shown in blue acts like Java script. It defines our page behavior
 7. For The SCSS file under the page folder, is basically css file for each page.
+
+
+The database name : expensedb
+Table 1 name : users
+Table strucure SQL code:
+
+CREATE TABLE `users` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `email` varchar(100) NOT NULL,
+ `password` varchar(255) NOT NULL,
+ PRIMARY KEY (`id`),
+ UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
