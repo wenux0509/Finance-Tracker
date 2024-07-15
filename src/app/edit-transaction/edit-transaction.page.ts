@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EditTransactionPage implements OnInit {
   transaction: any = {
+    id: 0,
     amount: 0,
     category: '',
     date: '',
@@ -55,7 +56,7 @@ export class EditTransactionPage implements OnInit {
     this.http.post(`http://localhost/finance-tracker/update-transaction.php`, this.transaction)
       .subscribe(
         () => {
-          this.router.navigate(['/expense-tracker']);
+          this.router.navigate(['/expense-tracker'], { queryParams: { refresh: true } });
         },
         (error) => {
           console.error('Error updating transaction:', error);

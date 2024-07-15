@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -14,16 +14,28 @@ export class ExpenseTrackerPage implements OnInit {
   loading: boolean = true; // Add loading indicator
   searchCategory: string = ''; // Search category
   filteredTransactionsByMonth: { [key: string]: any[] } = {};
-  constructor(private router: Router, private http: HttpClient) {}
+
+  constructor(
+    private router: Router, 
+    private route: ActivatedRoute, 
+    private http: HttpClient
+  ) {}
 
   ngOnInit() {
     this.getUsername();
 
-    // Subscribe to router events to detect navigation back from add-transaction page
+    // Subscribe to router events to detect navigation back from add-transaction or edit-transaction page
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         console.log('Navigation ended:', event.url);
         this.refreshTransactionsIfNecessary(event.url);
+      }
+    });
+
+    // Check for query parameter indicating a refresh is needed
+    this.route.queryParams.subscribe(params => {
+      if (params['refresh']) {
+        this.refreshTransactions();
       }
     });
   }
@@ -78,14 +90,14 @@ export class ExpenseTrackerPage implements OnInit {
   }
 
   getTotalAmount(transactions: any[]): number {
-    return transactions.reduce((total, transaction) => total + transaction.amount, 0);
+    return transactions.reduce((total, transaction) => total + Number(transaction.amount), 0);
   }
 
   refreshTransactionsIfNecessary(url: string) {
     // Check if the URL contains '/add-transaction' or '/edit-transaction'
     if (url.includes('/add-transaction') || url.includes('/edit-transaction')) {
       console.log('Refreshing transactions...');
-      this.getTransactions(parseInt(localStorage.getItem('userId') || '0', 10));
+      this.refreshTransactions();
     }
   }
 
@@ -109,7 +121,7 @@ export class ExpenseTrackerPage implements OnInit {
   editTransaction(transactionId: number) {
     this.router.navigate([`/edit-transaction/${transactionId}`]);
   }
-  
+
   deleteTransaction(transactionId: number) {
     if (confirm('Are you sure you want to delete this transaction?')) {
       this.http.delete(`http://localhost/finance-tracker/delete-transaction.php?transaction_id=${transactionId}`)
@@ -129,13 +141,14 @@ export class ExpenseTrackerPage implements OnInit {
   goToProfile() {
     this.router.navigate(['/profile']);
   }
-  
+
   refreshTransactions() {
     const userId = localStorage.getItem('userId');
     if (userId) {
       this.getTransactions(parseInt(userId, 10));
     }
   }
+
   logout() {
     localStorage.removeItem('userId');
     this.router.navigate(['/login']);
