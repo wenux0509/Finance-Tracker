@@ -13,21 +13,43 @@
 
 <ion-content class="ion-padding">
   <h2>Welcome {{ username }}</h2>
-
+  <ion-searchbar [(ngModel)]="searchCategory" (ionInput)="filterTransactions()" placeholder="Search by category"></ion-searchbar>
   <ion-button expand="block" (click)="addTransaction()">Add Transaction</ion-button>
+  <ion-button expand="block" color="secondary" (click)="refreshTransactions()">Refresh</ion-button>
 
   <ion-spinner *ngIf="loading"></ion-spinner> <!-- Show loading spinner when data is loading -->
 
-  <ion-list *ngIf="!loading && transactions.length > 0">
-    <ion-item *ngFor="let transaction of transactions">
-      <ion-label>
-        <h2>Amount: {{ transaction.amount }} MYR</h2>
-        <p>Category: {{ transaction.category }}</p>
-        <p>Date: {{ transaction.date }}</p>
-        <p>Notes: {{ transaction.notes }}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+  <ng-container *ngIf="!loading && filteredTransactionsByMonth">
+    <ng-container *ngFor="let month of filteredTransactionsByMonth | keyvalue">
+      <ion-list>
+        <ion-item-divider>
+          <ion-label>{{ month.key }}</ion-label>
+        </ion-item-divider>
+
+        <ion-item *ngFor="let transaction of month.value">
+          <ion-label>
+            <h2>Amount: {{ transaction.amount }} MYR</h2>
+            <p>Category: {{ transaction.category }}</p>
+            <p>Date: {{ transaction.date | date: 'mediumDate' }}</p>
+            <p>Notes: {{ transaction.notes }}</p>
+            <p>Location: {{transaction.location }}</p>
+          </ion-label>
+          <ion-buttons slot="end">
+            <ion-button color="primary" (click)="editTransaction(transaction.id)">
+              Edit
+            </ion-button>
+            <ion-button color="danger" (click)="deleteTransaction(transaction.id)">
+              Delete
+            </ion-button>
+          </ion-buttons>
+        </ion-item>
+
+        <ion-item>
+          <ion-label><strong>Total: {{ getTotalAmount(month.value) }} MYR</strong></ion-label>
+        </ion-item>
+      </ion-list>
+    </ng-container>
+  </ng-container>
 
   <ion-item *ngIf="!loading && transactions.length === 0">
     <ion-label>
@@ -35,8 +57,6 @@
     </ion-label>
   </ion-item>
 </ion-content>
-
-
 
 
 
