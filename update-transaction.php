@@ -38,6 +38,9 @@ if ($transaction_id === 0 || $amount === 0 || $category === null || $date === nu
     exit;
 }
 
+// Convert date to ISO 8601 format if it's not already
+$date = date('Y-m-d\TH:i:s', strtotime($date));
+
 // Construct SQL query
 $sql = "UPDATE transactions SET amount = $amount, category = '$category', date = '$date', notes = '$notes', location = '$location' WHERE id = $transaction_id AND user_id = $user_id";
 

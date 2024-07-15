@@ -9,7 +9,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EditTransactionPage implements OnInit {
   transaction: any = {
-    id: 0,
     amount: 0,
     category: '',
     date: '',
@@ -44,6 +43,7 @@ export class EditTransactionPage implements OnInit {
         (response: any) => {
           if (response && response.length > 0) {
             this.transaction = response[0];
+            this.transaction.date = this.formatDateForIonDatetime(this.transaction.date);
           }
         },
         (error) => {
@@ -52,11 +52,17 @@ export class EditTransactionPage implements OnInit {
       );
   }
 
+  formatDateForIonDatetime(dateString: string): string {
+    // Assuming datetimeString is in 'YYYY-MM-DD HH:mm:ss' format, convert it to 'YYYY-MM-DDTHH:mm:ss'
+    return dateString.replace(' ', 'T');
+  }
+
   saveTransaction() {
+    this.transaction.date = this.transaction.date.replace('T', ' '); // Convert back to original format if needed
     this.http.post(`http://localhost/finance-tracker/update-transaction.php`, this.transaction)
       .subscribe(
         () => {
-          this.router.navigate(['/expense-tracker'], { queryParams: { refresh: true } });
+          this.router.navigate(['/expense-tracker']);
         },
         (error) => {
           console.error('Error updating transaction:', error);

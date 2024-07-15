@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/expense-tracker"></ion-back-button>
+    </ion-buttons>
     <ion-title>Edit Transaction</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -8,11 +11,11 @@
   <form (ngSubmit)="saveTransaction()">
     <ion-item>
       <ion-label position="floating">Amount</ion-label>
-      <ion-input [(ngModel)]="transaction.amount" name="amount"></ion-input>
+      <ion-input [(ngModel)]="transaction.amount" name="amount" type="number"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Category</ion-label>
-      <ion-select [(ngModel)]="transaction.category">
+      <ion-select [(ngModel)]="transaction.category" name="category">
         <ion-select-option value="Food">Food</ion-select-option>
         <ion-select-option value="Transport">Transport</ion-select-option>
         <ion-select-option value="Shopping">Shopping</ion-select-option>
@@ -22,7 +25,7 @@
     </ion-item>
     <ion-item>
       <ion-label position="floating">Date</ion-label>
-      <ion-datetime [(ngModel)]="transaction.date" name="date"></ion-datetime>
+      <ion-datetime display-format="YYYY-MM-DDTHH:mm:ss" [(ngModel)]="transaction.date" name="date"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Notes</ion-label>
