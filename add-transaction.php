@@ -57,14 +57,3 @@ if(isset($input['amount']) && isset($input['category']) && isset($input['date'])
 // Close database connection
 $conn->close();
 ?>
-
-
-
-
-
-
-
-
-
-
-

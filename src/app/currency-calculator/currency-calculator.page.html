@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Currency Calculator</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/expense-tracker"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label>Amount</ion-label>
+    <ion-input class="inputField" [(ngModel)]="amount" type="number" placeholder="Enter amount" (ionBlur)="formatAmount()"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>From Currency</ion-label>
+    <ion-select [(ngModel)]="fromCurrency">
+      <ion-select-option *ngFor="let currency of currencies" [value]="currency">{{ currency }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>To Currency</ion-label>
+    <ion-select [(ngModel)]="toCurrency">
+      <ion-select-option *ngFor="let currency of currencies" [value]="currency">{{ currency }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-button expand="block" (click)="convertCurrency()">Convert</ion-button>
+
+  <ion-item *ngIf="result !== null">
+    <ion-label>
+      Converted Amount: {{ result | number:'1.2-2' }}
+    </ion-label>
+  </ion-item>
+</ion-content>

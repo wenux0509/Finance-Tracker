@@ -12,6 +12,7 @@ export class ExpenseTrackerPage implements OnInit {
   transactions: any[] = [];
   transactionsByMonth: { [key: string]: any[] } = {};
   loading: boolean = true; // Add loading indicator
+
   searchCategory: string = ''; // Search category
   filteredTransactionsByMonth: { [key: string]: any[] } = {};
 
@@ -121,7 +122,7 @@ export class ExpenseTrackerPage implements OnInit {
   editTransaction(transactionId: number) {
     this.router.navigate([`/edit-transaction/${transactionId}`]);
   }
-
+  
   deleteTransaction(transactionId: number) {
     if (confirm('Are you sure you want to delete this transaction?')) {
       this.http.delete(`http://localhost/finance-tracker/delete-transaction.php?transaction_id=${transactionId}`)
@@ -141,7 +142,7 @@ export class ExpenseTrackerPage implements OnInit {
   goToProfile() {
     this.router.navigate(['/profile']);
   }
-
+  
   refreshTransactions() {
     const userId = localStorage.getItem('userId');
     if (userId) {
@@ -149,15 +150,12 @@ export class ExpenseTrackerPage implements OnInit {
     }
   }
 
+  goToExpenseChart() {
+    this.router.navigate(['/expense-chart']);
+  }  
+
   logout() {
     localStorage.removeItem('userId');
     this.router.navigate(['/login']);
   }
 }
-
-
-
-
-
-
-

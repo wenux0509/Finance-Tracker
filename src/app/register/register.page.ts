@@ -10,11 +10,21 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 export class RegisterPage {
   username: string = '';
   password: string = '';
+  secretnum: number | null = null;
 
   constructor(private router: Router, private http: HttpClient) {}
 
   register() {
-    const registerData = { username: this.username, password: this.password };
+    if (this.secretnum === null || this.secretnum.toString().length !== 4) {
+      alert('Secret number must be 4 digits.');
+      return;
+    }
+
+    const registerData = { 
+      username: this.username, 
+      password: this.password,
+      secretnum: this.secretnum 
+    };
 
     this.http.post('http://localhost/finance-tracker/register.php', registerData)
       .subscribe((response: any) => {
@@ -22,7 +32,7 @@ export class RegisterPage {
           alert('Registration successful');
           this.router.navigate(['/login']);
         } else {
-          alert('Registration failed');
+          alert('Registration failed: ' + response.error);
         }
       }, error => {
         console.error('An error occurred:', error);

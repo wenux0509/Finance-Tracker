@@ -56,5 +56,3 @@ if(isset($input['username']) && isset($input['password'])) {
 $stmt->close();
 $conn->close();
 ?>
-
-

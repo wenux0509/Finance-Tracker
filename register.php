@@ -29,28 +29,45 @@ if ($conn->connect_error) {
 // Decode JSON input from Angular
 $input = json_decode(file_get_contents('php://input'), true);
 
-// Check if username and password are provided
-if(isset($input['username']) && isset($input['password'])) {
+// Check if username, password, and secretnum are provided
+if(isset($input['username']) && isset($input['password']) && isset($input['secretnum'])) {
     $username = $input['username'];
     $password = $input['password'];
+    $secretnum = $input['secretnum'];
 
-    // Hash the password (recommended for security)
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    // Check if username already exists
+    $check_username = $conn->prepare("SELECT * FROM users WHERE username = ?");
+    $check_username->bind_param("s", $username);
+    $check_username->execute();
+    $result = $check_username->get_result();
 
-    // Prepare SQL statement to insert user data
-    $sql = "INSERT INTO users (username, password) VALUES ('$username', '$hashed_password')";
-
-    // Execute SQL statement
-    if ($conn->query($sql) === TRUE) {
-        // Registration successful
-        echo json_encode(array('success' => true));
+    if($result->num_rows > 0) {
+        // Username already exists
+        echo json_encode(array('success' => false, 'error' => 'Username already exists.'));
     } else {
-        // Registration failed
-        echo json_encode(array('success' => false, 'error' => $conn->error));
+        // Hash the password (recommended for security)
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+        // Prepare SQL statement to insert user data
+        $insert_user = $conn->prepare("INSERT INTO users (username, password, secretnum) VALUES (?, ?, ?)");
+        $insert_user->bind_param("ssi", $username, $hashed_password, $secretnum);
+
+        // Execute SQL statement
+        if ($insert_user->execute() === TRUE) {
+            // Registration successful
+            echo json_encode(array('success' => true));
+        } else {
+            // Registration failed
+            echo json_encode(array('success' => false, 'error' => $conn->error));
+        }
+
+        $insert_user->close();
     }
+
+    $check_username->close();
 } else {
     // Invalid request
-    echo json_encode(array('success' => false, 'error' => 'Username and password are required fields.'));
+    echo json_encode(array('success' => false, 'error' => 'Username, password, and secret number are required fields.'));
 }
 
 // Close database connection
