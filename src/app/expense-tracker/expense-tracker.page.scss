@@ -88,3 +88,16 @@
     --box-shadow: 3.0px 4.0px 4.0px hsl(0deg 0% 0% / 0.38);
   }
 }
+
+.list-date{
+  --background: #111111;
+}
+
+.white-text{
+  color: #fff;
+}
+
+ion-item {
+  --background: #303030; /* Background color for ion-item */
+  --ion-color-base: #212121; /* Base color for ion-item */
+}

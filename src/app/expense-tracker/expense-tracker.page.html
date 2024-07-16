@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
+    <ion-title class="white-text">
       Expense Tracker
     </ion-title>
     <ion-buttons slot="end">
@@ -12,11 +12,11 @@
 
 <ion-content class="ion-padding">
   <div class="greetings">
-    <h4>Welcome</h4>
-    <h1>{{ username }}</h1>
+    <h4 class="white-text">Welcome</h4>
+    <h1 class="white-text">{{ username }}</h1>
   </div>
 
-  <ion-searchbar [(ngModel)]="searchCategory" (ionInput)="filterTransactions()" placeholder="Search by category"></ion-searchbar>
+  <ion-searchbar class="white-text" [(ngModel)]="searchCategory" (ionInput)="filterTransactions()" placeholder="Search by category"></ion-searchbar>
   <div class="button-row">
     <ion-button class="menu-button" expand="block" (click)="addTransaction()">
       <img src="assets/icon/addTransaction.png">
@@ -33,7 +33,7 @@
     </div>
 
   <div class="expenses-header">
-    <h5>List of Expenses</h5>
+    <h5 class="white-text">List of Expenses</h5>
     <ion-button class="refresh-button" (click)="refreshTransactions()"><img class="refresh-icon" src="assets/icon/refresh.png"></ion-button>
   </div>
 
@@ -42,7 +42,7 @@
   <ng-container *ngIf="!loading && filteredTransactionsByMonth">
     <ng-container *ngFor="let month of filteredTransactionsByMonth | keyvalue">
       <ion-list>
-        <ion-item-divider>
+        <ion-item-divider class="list-date">
           <ion-label>{{ month.key }}</ion-label>
         </ion-item-divider>
 

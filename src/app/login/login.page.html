@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
+    <ion-title class="gray-text">
       Login
     </ion-title>
   </ion-toolbar>
@@ -8,17 +8,18 @@
 
 <ion-content class="ion-padding">
   <ion-item>
-    <ion-label position="floating">Username</ion-label>
-    <ion-input type="text" [(ngModel)]="username"></ion-input>
+    <ion-label class="gray-text" position="floating">Username</ion-label>
+    <ion-input class="gray-text" type="text" [(ngModel)]="username"></ion-input>
   </ion-item>
-  <ion-item>
-    <ion-label position="floating">Password</ion-label>
-    <ion-input type="password" [(ngModel)]="password"></ion-input>
+  <ion-item class="input">
+    <ion-label class="gray-text" position="floating">Password</ion-label>
+    <ion-input class="gray-text" type="password" [(ngModel)]="password"></ion-input>
   </ion-item>
   <ion-button expand="block" (click)="login()">Login</ion-button>
-  <p>Don't have an account? <a routerLink="/register">Register here</a></p>
-  <p>Forgot your password? <a routerLink="/recover">Recover it here</a></p>
-  <p>{{ loginError }}</p> <!-- Display login error message -->
+  <br>
+  <p class="gray-text">Don't have an account? <a routerLink="/register">Register here</a></p>
+  <p class="gray-text">Forgot your password? <a routerLink="/recover">Recover it here</a></p>
+  <p class="gray-text">{{ loginError }}</p> <!-- Display login error message -->
 </ion-content>
 
 
