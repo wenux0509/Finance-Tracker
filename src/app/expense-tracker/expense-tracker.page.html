@@ -1,24 +1,41 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Expense <br>
-      Tracker
+      Expense Tracker
     </ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="goToProfile()">Profile</ion-button>
-      <ion-button (click)="logout()">Logout</ion-button>
+      <ion-button (click)="goToProfile()"><i id="profile-icon" class="bi bi-person-circle"></i></ion-button>
+      <ion-button (click)="logout()"><i id="logout-icon" class="bi bi-box-arrow-right"></i></ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <h2>Welcome {{ username }}</h2>
+  <div class="greetings">
+    <h4>Welcome</h4>
+    <h1>{{ username }}</h1>
+  </div>
 
   <ion-searchbar [(ngModel)]="searchCategory" (ionInput)="filterTransactions()" placeholder="Search by category"></ion-searchbar>
-  <ion-button expand="block" (click)="addTransaction()">Add Transaction</ion-button>
-  <ion-button expand="block" color="secondary" (click)="refreshTransactions()">Refresh</ion-button>
-  <ion-button expand="block" routerLink="/currency-calculator">Currency Calculator</ion-button>
-  <ion-button expand="block" color="tertiary" routerLink="/expense-chart">Generate Chart</ion-button>
+  <div class="button-row">
+    <ion-button class="menu-button" expand="block" (click)="addTransaction()">
+      <img src="assets/icon/addTransaction.png">
+      <ion-label>Add</ion-label>
+    </ion-button>
+    <ion-button class="menu-button" expand="block" routerLink="/currency-calculator">
+      <img src="assets/icon/currencyCalculator.png">
+      <ion-label>Convert</ion-label>
+    </ion-button>
+    <ion-button class="menu-button" expand="block" routerLink="/expense-chart">
+      <img src="assets/icon/generateChart.png">
+      <ion-label>Chart</ion-label>
+    </ion-button>
+    </div>
+
+  <div class="expenses-header">
+    <h5>List of Expenses</h5>
+    <ion-button class="refresh-button" (click)="refreshTransactions()"><img class="refresh-icon" src="assets/icon/refresh.png"></ion-button>
+  </div>
 
   <ion-spinner *ngIf="loading"></ion-spinner> <!-- Show loading spinner when data is loading -->
 
@@ -39,10 +56,10 @@
           </ion-label>
           <ion-buttons slot="end">
             <ion-button color="primary" (click)="editTransaction(transaction.id)">
-              Edit
+              <i id="editDelete-icon" class="bi bi-pen"></i>
             </ion-button>
             <ion-button color="danger" (click)="deleteTransaction(transaction.id)">
-              Delete
+              <i id="editDelete-icon" class="bi bi-trash-fill"></i>
             </ion-button>
           </ion-buttons>
         </ion-item>

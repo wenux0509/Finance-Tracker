@@ -58,6 +58,11 @@ export class EditTransactionPage implements OnInit {
   }
 
   saveTransaction() {
+    // Validate inputs
+    if (!this.transaction.amount || !this.transaction.category || !this.transaction.date || !this.transaction.location) {
+      alert('Please fill in all required fields.');
+      return;
+    }
     this.transaction.date = this.transaction.date.replace('T', ' '); // Convert back to original format if needed
     this.http.post(`http://localhost/finance-tracker/update-transaction.php`, this.transaction)
       .subscribe(

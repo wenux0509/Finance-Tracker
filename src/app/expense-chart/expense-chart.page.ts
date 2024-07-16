@@ -41,7 +41,7 @@ export class ExpenseChartPage implements OnInit {
     const categoryTotals = categories.map(category => {
       return this.transactions
         .filter(transaction => transaction.category === category)
-        .reduce((total, transaction) => total + transaction.amount, 0);
+        .reduce((total, transaction) => total + Number(transaction.amount), 0);
     });
            
     const ctx = document.getElementById('doughnutChart') as HTMLCanvasElement;
@@ -60,7 +60,13 @@ export class ExpenseChartPage implements OnInit {
         plugins: {
           title: {
             display: true,
-            text: 'Average Daily Expenses by Category'
+            text: 'Average Daily Expenses by Category',
+            color: '#f0f0f0'
+          },
+          legend: {
+            labels: {
+              color: '#f0f0f0'
+            }
           }
         }
       }
@@ -72,10 +78,12 @@ export class ExpenseChartPage implements OnInit {
     const monthTotals = lastThreeMonths.map(month => {
       return this.transactions
         .filter(transaction => this.isTransactionInMonth(transaction, month))
-        .reduce((total, transaction) => total + transaction.amount, 0);
+        .reduce((total, transaction) => total + Number(transaction.amount), 0);
     });
   
     const ctx = document.getElementById('lineChart') as HTMLCanvasElement;
+    ctx.height = 200;
+    
     new Chart(ctx, {
       type: 'line',
       data: {
@@ -84,7 +92,7 @@ export class ExpenseChartPage implements OnInit {
           label: 'Expenses',
           data: monthTotals,
           fill: false,
-          borderColor: '#36A2EB'
+          borderColor: '#f0f0f0'
         }]
       },
       options: {
@@ -92,7 +100,35 @@ export class ExpenseChartPage implements OnInit {
         plugins: {
           title: {
             display: true,
-            text: 'Expenses for the Last 3 Months'
+            text: 'Expenses for the Last 3 Months',
+            color: '#f0f0f0'
+          },
+          legend: {
+            labels: {
+              color: '#f0f0f0' // Color of the legend text
+            }
+          }
+        },
+        scales: {
+          x: {
+            ticks: {
+              color: '#f0f0f0' // Color of the x-axis labels
+            },
+            title: {
+              display: true,
+              text: 'Month',
+              color: '#f0f0f0' // Color of the x-axis title
+            }
+          },
+          y: {
+            ticks: {
+              color: '#f0f0f0' // Color of the y-axis labels
+            },
+            title: {
+              display: true,
+              text: 'Amount (MYR)',
+              color: '#f0f0f0' // Color of the y-axis title
+            }
           }
         }
       }
