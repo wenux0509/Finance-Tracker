@@ -1,28 +1,28 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title id="white-text">Currency Calculator</ion-title>
+    <ion-title style="color: white;">Currency Calculator</ion-title>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/expense-tracker"></ion-back-button>
+      <ion-back-button style="color: white;" defaultHref="/expense-tracker"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
   <ion-item>
-    <ion-label id="white-text">Amount</ion-label>
+    <ion-label style="color: white;">Amount</ion-label>
     <ion-input class="inputField" [(ngModel)]="amount" type="number" placeholder="Enter amount" (ionBlur)="formatAmount()"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label id="white-text">From Currency</ion-label>
-    <ion-select id="white-text" [(ngModel)]="fromCurrency">
-      <ion-select-option *ngFor="let currency of currencies" [value]="currency">{{ currency }}</ion-select-option>
+    <ion-label style="color: white;">From Currency</ion-label>
+    <ion-select [(ngModel)]="fromCurrency">
+      <ion-select-option style="color: white;"*ngFor="let currency of currencies" [value]="currency">{{ currency }}</ion-select-option>
     </ion-select>
   </ion-item>
 
   <ion-item>
-    <ion-label id="white-text">To Currency</ion-label>
-    <ion-select id="white-text" [(ngModel)]="toCurrency">
+    <ion-label style="color: white;">To Currency</ion-label>
+    <ion-select [(ngModel)]="toCurrency">
       <ion-select-option *ngFor="let currency of currencies" [value]="currency">{{ currency }}</ion-select-option>
     </ion-select>
   </ion-item>

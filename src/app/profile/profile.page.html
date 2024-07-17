@@ -1,9 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/expense-tracker"></ion-back-button>
+      <ion-back-button style="color:white" defaultHref="/expense-tracker"></ion-back-button>
     </ion-buttons>
-    <ion-title>
+    <ion-title style="color:white" >
       Profile
     </ion-title>
   </ion-toolbar>
@@ -15,10 +15,10 @@
   </ion-avatar>
 
   <ion-item>
-    <ion-label>Username: {{ username }}</ion-label>
+    <ion-label style="color:white">Username: {{ username }}</ion-label>
   </ion-item>
   <ion-item>
-    <ion-label>User id: {{ userId }}</ion-label>
+    <ion-label style="color:white">User id: {{ userId }}</ion-label>
   </ion-item>
 
   <ion-button expand="block" (click)="takePicture()">Upload Picture</ion-button>

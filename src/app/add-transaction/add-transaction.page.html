@@ -1,9 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/expense-tracker"></ion-back-button>
+      <ion-back-button style="color: white;" defaultHref="/expense-tracker"></ion-back-button>
     </ion-buttons>
-    <ion-title class="white-text">
+    <ion-title style="color: white;">
       Add Transaction
     </ion-title>
   </ion-toolbar>
@@ -11,13 +11,13 @@
 
 <ion-content class="ion-padding">
   <ion-item>
-    <ion-label class="white-text" position="stacked">Amount</ion-label>
-    <ion-input class="white-text" type="number" [(ngModel)]="amount"></ion-input>
+    <ion-label style="color: white;"position="stacked">Amount</ion-label>
+    <ion-input style="color: white" type="number" [(ngModel)]="amount"></ion-input>
   </ion-item>
   
   <ion-item>
-    <ion-label class="white-text" position="stacked">Category</ion-label>
-    <ion-select class="white-text" [(ngModel)]="category">
+    <ion-label style="color: white;" position="stacked">Category</ion-label>
+    <ion-select style="color: white" [(ngModel)]="category">
       <ion-select-option value="Food">Food</ion-select-option>
       <ion-select-option value="Transport">Transport</ion-select-option>
       <ion-select-option value="Shopping">Shopping</ion-select-option>
@@ -27,18 +27,18 @@
   </ion-item>
   
   <ion-item>
-    <ion-label class="white-text" position="stacked">Date</ion-label>
-    <ion-datetime display-format="YYYY-MM-DD" [(ngModel)]="date"></ion-datetime>
+    <ion-label style="color: white;" position="stacked">Date</ion-label>
+    <ion-datetime style="color: white" display-format="YYYY-MM-DD" [(ngModel)]="date"></ion-datetime>
   </ion-item>
   
   <ion-item>
-    <ion-label class="white-text" position="stacked">Notes</ion-label>
-    <ion-textarea class="white-text" rows="3" [(ngModel)]="notes"></ion-textarea>
+    <ion-label style="color: white;"position="stacked">Notes</ion-label>
+    <ion-textarea style="color: white" rows="3" [(ngModel)]="notes"></ion-textarea>
   </ion-item>
   
   <ion-item>
-    <ion-label class="white-text" position="stacked">Location</ion-label>
-    <ion-input class="white-text" type="text" [(ngModel)]="location"></ion-input>
+    <ion-label style="color: white;"position="stacked">Location</ion-label>
+    <ion-input style="color: white" type="text" [(ngModel)]="location"></ion-input>
   </ion-item>
   
   <ion-button expand="block" (click)="addTransaction()">Add Transaction</ion-button>

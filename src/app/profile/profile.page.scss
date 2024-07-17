@@ -28,3 +28,12 @@
   max-height: 100px; /* Adjust size as needed */
   margin-top: 10px; /* Add margin for spacing */
 }
+
+.gray-text{
+  color: #f0f0f0;
+}
+
+ion-item {
+  --background: #212121; /* Background color for ion-item */
+  --ion-color-base: #303030; /* Base color for ion-item */
+}
