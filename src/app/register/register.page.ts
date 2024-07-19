@@ -15,7 +15,12 @@ export class RegisterPage {
   constructor(private router: Router, private http: HttpClient) {}
 
   register() {
-    if (this.secretnum === null || this.secretnum.toString().length !== 4) {
+    if (!this.username || !this.password || this.secretnum === null) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+  
+    if (this.secretnum.toString().length !== 4) {
       alert('Secret number must be 4 digits.');
       return;
     }
